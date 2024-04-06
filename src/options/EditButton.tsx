@@ -10,6 +10,7 @@ import {
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { Template } from "./types";
+import { IconPencil } from "@tabler/icons-react";
 
 type Props = {
   template: Template;
@@ -38,6 +39,7 @@ export const EditButton = ({ template, onSave, onDelete }: Props) => {
           open();
         }}
       >
+        <IconPencil strokeWidth={1} />
       </ActionIcon>
 
       <Modal
@@ -50,7 +52,6 @@ export const EditButton = ({ template, onSave, onDelete }: Props) => {
         <form
           onSubmit={form.onSubmit((values) => {
             onSave(values);
-
             close();
           })}
         >
@@ -66,7 +67,11 @@ export const EditButton = ({ template, onSave, onDelete }: Props) => {
                 type="button"
                 variant="light"
                 color="red"
-                onClick={() => onDelete()}
+                tabIndex={-1}
+                onClick={() => {
+                  onDelete();
+                  close();
+                }}
               >
                 削除
               </Button>

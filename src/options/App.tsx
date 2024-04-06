@@ -1,47 +1,71 @@
 import { Container, Flex, Paper, Table, Title } from "@mantine/core";
-import { useForm } from "@mantine/form";
 import { AddButton } from "./AddButton";
 import { Template } from "./types";
 import { EditButton } from "./EditButton";
+import { useEffect, useState } from "react";
 
 function App() {
-  const form = useForm<{ templates: Template[] }>({
-    initialValues: {
-      templates: [],
-    },
-  });
+  const [templates, setTemplates] = useState<Template[]>([]);
+
+  useEffect(() => {
+    chrome.storage.local.get(["TEMPLATES"], (value) => {
+      if (!value?.TEMPLATES) {
+        return;
+      }
+
+      setTemplates(value.TEMPLATES);
+    });
+  }, []);
 
   return (
     <Container my="xl" size="sm">
       <Flex justify="space-between" align="center">
         <Title order={3}>定型文設定</Title>
         <AddButton
-          onAdd={(values) => form.insertListItem("templates", values)}
+          onAdd={(values) => {
+            const newTemplates = [...templates, values];
+            setTemplates(newTemplates);
+
+            chrome.storage.local.set({
+              TEMPLATES: newTemplates,
+            });
+          }}
         />
       </Flex>
-      {form.values.templates.length > 0 && (
+      {templates.length > 0 && (
         <Paper mt="xl" shadow="md" withBorder>
           <Table
             highlightOnHover
             highlightOnHoverColor="var(--mantine-color-gray-1)"
           >
             <Table.Tbody>
-              {form.values.templates.map((template, index) => (
+              {templates.map((template, index) => (
                 <Table.Tr key={index}>
                   <Table.Td>{template.title}</Table.Td>
                   <Table.Td w={0}>
                     <EditButton
                       template={template}
                       onSave={(values) => {
-                        const newValues = form.values.templates.map(
-                          (template, i) => {
-                            return i === index ? values : template;
-                          },
-                        );
+                        const newTemplates = templates.map((t, i) => {
+                          return i === index ? values : t;
+                        });
 
-                        form.setFieldValue("templates", newValues);
+                        setTemplates(newTemplates);
+
+                        chrome.storage.local.set({
+                          TEMPLATES: newTemplates,
+                        });
                       }}
-                      onDelete={() => form.removeListItem("templates", index)}
+                      onDelete={() => {
+                        const newTemplates = templates.filter(
+                          (_, i) => i !== index,
+                        );
+                        setTemplates(newTemplates);
+
+                        chrome.storage.local.set({
+                          TEMPLATES: newTemplates,
+                        });
+                      }}
                     />
                   </Table.Td>
                 </Table.Tr>
