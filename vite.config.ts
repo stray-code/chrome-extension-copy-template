@@ -6,13 +6,13 @@ const manifest = defineManifest({
   manifest_version: 3,
   name: "定型文コピー",
   version: "1.0.0",
-  // icons: {
-  //   16: "img/icon16.png",
-  //   48: "img/icon48.png",
-  //   128: "img/icon128.png",
-  // },
+  icons: {
+    16: "img/icon16.png",
+    48: "img/icon48.png",
+    128: "img/icon128.png",
+  },
   action: {
-    // default_icon: "img/icon16.png",
+    default_icon: "img/icon16.png",
     default_popup: "src/popup/index.html",
   },
   options_page: 'src/options/index.html',
