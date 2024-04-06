@@ -5,6 +5,7 @@ import { crx, defineManifest } from "@crxjs/vite-plugin";
 const manifest = defineManifest({
   manifest_version: 3,
   name: "定型文コピー",
+  description: "定型文をコピーできます。",
   version: "1.0.0",
   icons: {
     16: "img/icon16.png",
