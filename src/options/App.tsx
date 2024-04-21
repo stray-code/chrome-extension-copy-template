@@ -20,7 +20,7 @@ function App() {
   return (
     <Container my="xl" size="sm">
       <Flex justify="space-between" align="center">
-        <Title order={3}>定型文設定</Title>
+        <Title order={3}>定型文を設定</Title>
         <AddButton
           onAdd={(values) => {
             const newTemplates = [...templates, values];
