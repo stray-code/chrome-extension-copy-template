@@ -1,12 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import { crx, defineManifest } from "@crxjs/vite-plugin";
 
 const manifest = defineManifest({
   manifest_version: 3,
   name: "定型文コピー",
   description: "定型文をコピーできます。",
-  version: "1.0.0",
+  version: "1.0.1",
   icons: {
     16: "img/icon16.png",
     48: "img/icon48.png",
@@ -16,8 +16,8 @@ const manifest = defineManifest({
     default_icon: "img/icon16.png",
     default_popup: "src/popup/index.html",
   },
-  options_page: 'src/options/index.html',
-  permissions: ['storage'],
+  options_page: "src/options/index.html",
+  permissions: ["storage"],
 });
 
 // https://vitejs.dev/config/
@@ -30,4 +30,4 @@ export default defineConfig({
       port: 5173,
     },
   },
-})
+});
