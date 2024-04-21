@@ -7,6 +7,14 @@ import { useEffect, useState } from "react";
 function App() {
   const [templates, setTemplates] = useState<Template[]>([]);
 
+  const update = (newTemplates: Template[]) => {
+    setTemplates(newTemplates);
+
+    chrome.storage.local.set({
+      TEMPLATES: newTemplates,
+    });
+  };
+
   useEffect(() => {
     chrome.storage.local.get(["TEMPLATES"], (value) => {
       if (!value?.TEMPLATES) {
@@ -24,11 +32,8 @@ function App() {
         <AddButton
           onAdd={(values) => {
             const newTemplates = [...templates, values];
-            setTemplates(newTemplates);
 
-            chrome.storage.local.set({
-              TEMPLATES: newTemplates,
-            });
+            update(newTemplates);
           }}
         />
       </Flex>
@@ -50,21 +55,14 @@ function App() {
                           return i === index ? values : t;
                         });
 
-                        setTemplates(newTemplates);
-
-                        chrome.storage.local.set({
-                          TEMPLATES: newTemplates,
-                        });
+                        update(newTemplates);
                       }}
                       onDelete={() => {
                         const newTemplates = templates.filter(
                           (_, i) => i !== index,
                         );
-                        setTemplates(newTemplates);
 
-                        chrome.storage.local.set({
-                          TEMPLATES: newTemplates,
-                        });
+                        update(newTemplates);
                       }}
                     />
                   </Table.Td>
