@@ -13,7 +13,6 @@ const manifest = defineManifest({
     128: "img/icon128.png",
   },
   action: {
-    default_icon: "img/icon16.png",
     default_popup: "src/popup/index.html",
   },
   options_page: "src/options/index.html",
