@@ -31,6 +31,10 @@ function App() {
           fw="normal"
           onClick={async () => {
             await navigator.clipboard.writeText(template.body);
+
+            // すぐにウィンドウを閉じるとコピーできない場合があるため、待つ
+            await new Promise((resolve) => setTimeout(resolve, 10));
+
             window.close();
           }}
           styles={{
