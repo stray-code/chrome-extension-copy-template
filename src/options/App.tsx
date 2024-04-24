@@ -3,26 +3,27 @@ import { AddButton } from "./AddButton";
 import { Template } from "./types";
 import { EditButton } from "./EditButton";
 import { useEffect, useState } from "react";
+import { getLocalStorage, setLocalStorage } from "../utils";
 
 function App() {
   const [templates, setTemplates] = useState<Template[]>([]);
 
-  const update = (newTemplates: Template[]) => {
+  const update = async (newTemplates: Template[]) => {
     setTemplates(newTemplates);
 
-    chrome.storage.local.set({
-      TEMPLATES: newTemplates,
-    });
+    await setLocalStorage("templateList", newTemplates);
   };
 
   useEffect(() => {
-    chrome.storage.local.get(["TEMPLATES"], (value) => {
-      if (!value?.TEMPLATES) {
+    (async () => {
+      const templateList = await getLocalStorage("templateList");
+
+      if (!templateList) {
         return;
       }
 
-      setTemplates(value.TEMPLATES);
-    });
+      setTemplates(templateList);
+    })();
   }, []);
 
   return (

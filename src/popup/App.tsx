@@ -1,18 +1,21 @@
 import { Box, Button, Divider } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { Template } from "../options/types";
+import { getLocalStorage } from "../utils";
 
 function App() {
   const [templates, setTemplates] = useState<Template[]>([]);
 
   useEffect(() => {
-    chrome.storage.local.get(["TEMPLATES"], (value) => {
-      if (!value?.TEMPLATES) {
+    (async () => {
+      const templateList = await getLocalStorage("templateList");
+
+      if (!templateList) {
         return;
       }
 
-      setTemplates(value.TEMPLATES);
-    });
+      setTemplates(templateList);
+    })();
   }, []);
 
   return (
