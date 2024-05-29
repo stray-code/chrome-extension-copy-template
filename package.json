@@ -12,10 +12,7 @@
     "tsc": "tsc --skipLibCheck --noEmit"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "bash -c \"npm run tsc\"",
-      "bash -c \"npm run check\""
-    ]
+    "*.{ts,tsx}": ["bash -c \"npm run tsc\"", "bash -c \"npm run check\""]
   },
   "dependencies": {
     "@mantine/core": "^7.7.1",
@@ -23,7 +20,9 @@
     "@mantine/hooks": "^7.7.1",
     "@tabler/icons-react": "^3.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-sortablejs": "^6.1.4",
+    "sortablejs": "^1.15.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
