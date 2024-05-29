@@ -30,7 +30,10 @@ export const AddButton = ({ onAdd }: Props) => {
       >
         <form
           onSubmit={form.onSubmit((values) => {
-            onAdd(values);
+            onAdd({
+              ...values,
+              id: Date.now(),
+            });
             form.reset();
 
             close();

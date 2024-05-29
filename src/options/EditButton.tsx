@@ -23,6 +23,7 @@ export const EditButton = ({ template, onSave, onDelete }: Props) => {
 
   const form = useForm({
     initialValues: {
+      id: -1,
       title: "",
       body: "",
     },
