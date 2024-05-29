@@ -22,7 +22,6 @@ export const EditButton = ({ template, onSave }: Props) => {
 
   const form = useForm({
     initialValues: {
-      id: -1,
       title: "",
       body: "",
     },
@@ -51,7 +50,10 @@ export const EditButton = ({ template, onSave }: Props) => {
       >
         <form
           onSubmit={form.onSubmit((values) => {
-            onSave(values);
+            onSave({
+              ...values,
+              id: template.id,
+            });
             close();
           })}
         >
