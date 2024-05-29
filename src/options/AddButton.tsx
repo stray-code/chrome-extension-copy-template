@@ -1,7 +1,7 @@
 import { Button, Flex, Modal, Stack, TextInput, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { Template } from "./types";
+import type { Template } from "./types";
 
 type Props = {
   onAdd: (values: Template) => void;

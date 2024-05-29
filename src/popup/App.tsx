@@ -1,6 +1,6 @@
 import { Box, Button, Divider } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { Template } from "../options/types";
+import type { Template } from "../options/types";
 import { getLocalStorage } from "../utils";
 
 function App() {

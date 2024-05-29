@@ -1,9 +1,9 @@
 import { Container, Flex, Paper, Table, Title } from "@mantine/core";
-import { AddButton } from "./AddButton";
-import { Template } from "./types";
-import { EditButton } from "./EditButton";
 import { useEffect, useState } from "react";
 import { getLocalStorage, setLocalStorage } from "../utils";
+import { AddButton } from "./AddButton";
+import { EditButton } from "./EditButton";
+import type { Template } from "./types";
 
 function App() {
   const [templates, setTemplates] = useState<Template[]>([]);

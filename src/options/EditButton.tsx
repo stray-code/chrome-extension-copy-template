@@ -9,8 +9,8 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { Template } from "./types";
 import { IconPencil } from "@tabler/icons-react";
+import type { Template } from "./types";
 
 type Props = {
   template: Template;
