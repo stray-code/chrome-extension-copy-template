@@ -15,10 +15,9 @@ import type { Template } from "./types";
 type Props = {
   template: Template;
   onSave: (values: Template) => void;
-  onDelete: () => void;
 };
 
-export const EditButton = ({ template, onSave, onDelete }: Props) => {
+export const EditButton = ({ template, onSave }: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
@@ -40,7 +39,7 @@ export const EditButton = ({ template, onSave, onDelete }: Props) => {
           open();
         }}
       >
-        <IconPencil strokeWidth={1} />
+        <IconPencil size={20} color="gray" />
       </ActionIcon>
 
       <Modal
@@ -63,19 +62,7 @@ export const EditButton = ({ template, onSave, onDelete }: Props) => {
               rows={10}
               label="定型文"
             />
-            <Flex justify="space-between">
-              <Button
-                type="button"
-                variant="light"
-                color="red"
-                tabIndex={-1}
-                onClick={() => {
-                  onDelete();
-                  close();
-                }}
-              >
-                削除
-              </Button>
+            <Flex justify="space-end">
               <Button type="submit">保存</Button>
             </Flex>
           </Stack>

@@ -1,5 +1,13 @@
-import { Center, Container, Flex, Paper, Table, Title } from "@mantine/core";
-import { IconGridDots } from "@tabler/icons-react";
+import {
+  ActionIcon,
+  Center,
+  Container,
+  Flex,
+  Paper,
+  Table,
+  Title,
+} from "@mantine/core";
+import { IconGridDots, IconTrash } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { getLocalStorage, setLocalStorage } from "../utils";
@@ -66,23 +74,40 @@ function App() {
                   </Table.Td>
                   <Table.Td>{template.title}</Table.Td>
                   <Table.Td w={0}>
-                    <EditButton
-                      template={template}
-                      onSave={(values) => {
-                        const newTemplates = templates.map((t) => {
-                          return t.id === template.id ? values : t;
-                        });
+                    <Flex gap="md">
+                      <EditButton
+                        template={template}
+                        onSave={(values) => {
+                          const newTemplates = templates.map((t) => {
+                            return t.id === template.id ? values : t;
+                          });
 
-                        update(newTemplates);
-                      }}
-                      onDelete={() => {
-                        const newTemplates = templates.filter(
-                          (t) => t.id !== template.id,
-                        );
+                          update(newTemplates);
+                        }}
+                      />
+                      <ActionIcon
+                        variant="light"
+                        color="gray"
+                        c="dark"
+                        onClick={() => {
+                          const result = confirm(
+                            "本当に削除してもよろしいですか？",
+                          );
 
-                        update(newTemplates);
-                      }}
-                    />
+                          if (!result) {
+                            return;
+                          }
+
+                          const newTemplates = templates.filter(
+                            (t) => t.id !== template.id,
+                          );
+
+                          update(newTemplates);
+                        }}
+                      >
+                        <IconTrash size={20} color="gray" />
+                      </ActionIcon>
+                    </Flex>
                   </Table.Td>
                 </Table.Tr>
               ))}
