@@ -20,9 +20,10 @@ function App() {
 
   return (
     <Box py="xs" px={5} miw={200} maw={400}>
-      {templates.map((template) => (
+      {templates.map((template, index) => (
         <Button
-          key={template.id}
+          // TODO: idが無い場合を考慮
+          key={index}
           variant="subtle"
           px="xs"
           fullWidth

@@ -32,7 +32,15 @@ function App() {
         return;
       }
 
-      setTemplates(templateList);
+      // TODO: idが無い場合を考慮
+      const payload = templateList.map((template, index) => {
+        return {
+          ...template,
+          id: template?.id ?? index,
+        };
+      });
+
+      setTemplates(payload);
     })();
   }, []);
 
