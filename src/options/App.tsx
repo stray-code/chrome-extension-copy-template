@@ -50,11 +50,20 @@ function App() {
               list={templates}
               setList={setTemplates}
               tag={Table.Tbody}
+              handle=".handle"
+              animation={200}
             >
               {templates.map((template) => (
                 <Table.Tr key={template.id}>
                   <Table.Td w={0}>
-                    <Center>
+                    <Center
+                      className="handle"
+                      styles={{
+                        root: {
+                          cursor: "grab",
+                        },
+                      }}
+                    >
                       <IconGridDots size={16} color="gray" />
                     </Center>
                   </Table.Td>
