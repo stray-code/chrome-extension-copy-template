@@ -20,9 +20,9 @@ function App() {
 
   return (
     <Box py="xs" px={5} miw={200} maw={400}>
-      {templates.map((template, index) => (
+      {templates.map((template) => (
         <Button
-          key={index}
+          key={template.id}
           variant="subtle"
           px="xs"
           fullWidth
