@@ -62,7 +62,15 @@ export const EditButton = ({ template, onSave }: Props) => {
               rows={10}
               label="定型文"
             />
-            <Flex justify="space-end">
+            <Flex justify="flex-end" gap="md">
+              <Button
+                type="button"
+                variant="light"
+                color="gray"
+                onClick={() => close()}
+              >
+                キャンセル
+              </Button>
               <Button type="submit">保存</Button>
             </Flex>
           </Stack>
