@@ -53,7 +53,7 @@ function App() {
           <Table>
             <ReactSortable
               list={templates}
-              setList={setTemplates}
+              setList={update}
               tag={Table.Tbody}
               handle=".handle"
               animation={200}
