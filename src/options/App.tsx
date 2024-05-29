@@ -1,5 +1,7 @@
-import { Container, Flex, Paper, Table, Title } from "@mantine/core";
+import { Center, Container, Flex, Paper, Table, Title } from "@mantine/core";
+import { IconGridDots } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import { ReactSortable } from "react-sortablejs";
 import { getLocalStorage, setLocalStorage } from "../utils";
 import { AddButton } from "./AddButton";
 import { EditButton } from "./EditButton";
@@ -44,23 +46,32 @@ function App() {
             highlightOnHover
             highlightOnHoverColor="var(--mantine-color-gray-1)"
           >
-            <Table.Tbody>
-              {templates.map((template, index) => (
-                <Table.Tr key={index}>
+            <ReactSortable
+              list={templates}
+              setList={setTemplates}
+              tag={Table.Tbody}
+            >
+              {templates.map((template) => (
+                <Table.Tr key={template.id}>
+                  <Table.Td w={0}>
+                    <Center>
+                      <IconGridDots size={16} color="gray" />
+                    </Center>
+                  </Table.Td>
                   <Table.Td>{template.title}</Table.Td>
                   <Table.Td w={0}>
                     <EditButton
                       template={template}
                       onSave={(values) => {
-                        const newTemplates = templates.map((t, i) => {
-                          return i === index ? values : t;
+                        const newTemplates = templates.map((t) => {
+                          return t.id === template.id ? values : t;
                         });
 
                         update(newTemplates);
                       }}
                       onDelete={() => {
                         const newTemplates = templates.filter(
-                          (_, i) => i !== index,
+                          (t) => t.id !== template.id,
                         );
 
                         update(newTemplates);
@@ -69,7 +80,7 @@ function App() {
                   </Table.Td>
                 </Table.Tr>
               ))}
-            </Table.Tbody>
+            </ReactSortable>
           </Table>
         </Paper>
       )}
