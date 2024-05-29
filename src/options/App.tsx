@@ -42,10 +42,7 @@ function App() {
       </Flex>
       {templates.length > 0 && (
         <Paper mt="xl" shadow="md" withBorder>
-          <Table
-            highlightOnHover
-            highlightOnHoverColor="var(--mantine-color-gray-1)"
-          >
+          <Table>
             <ReactSortable
               list={templates}
               setList={setTemplates}
