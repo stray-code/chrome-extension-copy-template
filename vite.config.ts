@@ -6,7 +6,7 @@ const manifest = defineManifest({
   manifest_version: 3,
   name: "定型文コピー",
   description: "定型文をコピーできます。",
-  version: "1.1.0",
+  version: "1.1.1",
   icons: {
     16: "img/icon16.png",
     48: "img/icon48.png",
